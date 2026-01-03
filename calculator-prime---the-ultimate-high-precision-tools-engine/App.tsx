@@ -7,7 +7,8 @@ import {
   Link as LinkIcon, ShieldAlert, FileText, Info, Mail, BookOpen,
   Coins, PiggyBank, FileDown, RefreshCcw, TrendingUp, LayoutGrid, Sparkles,
   Zap, Settings, ShieldCheck, Rocket, Landmark, DollarSign, Baby, Hash, AlignLeft,
-  Tag, ReceiptText, Plus, Trash2, Printer
+  Tag, ReceiptText, Plus, Trash2, Printer, Flame, Gauge, HeartPulse, Scale, Flower,
+  Dumbbell, Triangle, BarChart3
 } from 'lucide-react';
 
 // Import Pages
@@ -15,6 +16,14 @@ import HomePage from './pages/HomePage';
 import EMICalculator from './pages/EMICalculator';
 import UnitConverter from './pages/UnitConverter';
 import BMICalculator from './pages/BMICalculator';
+import CalorieCalculator from './pages/CalorieCalculator';
+import BodyFatCalculator from './pages/BodyFatCalculator';
+import BMRCalculator from './pages/BMRCalculator';
+import IdealWeightCalculator from './pages/IdealWeightCalculator';
+import PeriodCalculator from './pages/PeriodCalculator';
+import LeanBodyMassCalculator from './pages/LeanBodyMassCalculator';
+import PythagoreanCalculator from './pages/PythagoreanCalculator';
+import StatisticsCalculator from './pages/StatisticsCalculator';
 import QRCodeGenerator from './pages/QRCodeGenerator';
 import NumberToWords from './pages/NumberToWords';
 import GeneralCalculator from './pages/GeneralCalculator';
@@ -51,7 +60,7 @@ interface LanguageContextType {
 
 const translations = {
   en: {
-    app_name: "CalcMate",
+    app_name: "Calculator Prime",
     home: "Home",
     featured: "Featured Tools",
     all_tools: "Explore All Tools",
@@ -79,6 +88,14 @@ const translations = {
     currency_calc: "Currency Converter",
     unit_conv: "Unit Converter",
     bmi_calc: "BMI Calculator",
+    calorie_calc: "Calorie Calculator",
+    body_fat_calc: "Body Fat Calculator",
+    bmr_calc: "BMR Calculator",
+    ideal_weight_calc: "Ideal Weight Calculator",
+    period_calc: "Period Calculator",
+    lbm_calc: "Lean Body Mass Calculator",
+    pythagorean_calc: "Pythagorean Theorem Calculator",
+    stats_calc: "Statistics Calculator",
     age_calc: "Age Calculator",
     percent_calc: "Percentage Calculator",
     discount_calc: "Discount Calculator",
@@ -106,7 +123,7 @@ const translations = {
     gold_calc: "Global Gold Price",
     sanchay_calc: "Savings Profit",
     invoice_maker: "Pro Invoice Maker",
-    footer_text: "Copyright by Onessor IT",
+    footer_text: "Powered by Onessor IT",
     history: "History",
     no_history: "NO HISTORY YET",
     clear_all: "Clear All",
@@ -120,9 +137,9 @@ const translations = {
     desc_emi: "Plan your loans by calculating monthly installments and interest instantly.",
     desc_sanchay: "Get accurate monthly profit estimates for BD Savings Certificates.",
     search_placeholder: "What are you looking for today?",
-    hero_title: "Smart Tools for",
-    hero_highlight: "Digital Life",
-    hero_desc: "Your all-in-one digital companion for calculations, conversions, and productivity. Fast, free, and designed for global users.",
+    hero_title: "Precision Tools for",
+    hero_highlight: "Smart Living",
+    hero_desc: "Calculator Prime is your next-gen digital companion for calculations, logic, and professional utilities. Fast, free, and uniquely built for you.",
     
     // General UI
     calculate: "Calculate",
@@ -133,7 +150,7 @@ const translations = {
     share: "Share Result",
   },
   bn: {
-    app_name: "ক্যালকমেট",
+    app_name: "ক্যালকুলেটর প্রাইম",
     home: "হোম",
     featured: "সেরা টুলস",
     all_tools: "সবগুলো টুল দেখুন",
@@ -161,6 +178,14 @@ const translations = {
     currency_calc: "কারেন্সি কনভার্টার",
     unit_conv: "ইউনিট কনভার্টার",
     bmi_calc: "BMI ক্যালকুলেটর",
+    calorie_calc: "ক্যালরি ক্যালকুলেটর",
+    body_fat_calc: "বডি ফ্যাট ক্যালকুলেটর",
+    bmr_calc: "বিএমআর ক্যালকুলেটর",
+    ideal_weight_calc: "আদর্শ ওজন ক্যালকুলেটর",
+    period_calc: "মাসিক ক্যালকুলেটর",
+    lbm_calc: "মাংসপেশির ওজন ক্যালকুলেটর",
+    pythagorean_calc: "পিথাগোরাস ক্যালকুলেটর",
+    stats_calc: "পরিসংখ্যান ক্যালকুলেটর",
     age_calc: "বয়স ক্যালকুলেটর",
     percent_calc: "পার্সেন্টেজ ক্যালকুলেটর",
     discount_calc: "ডিসকাউন্ট ক্যালকুলেটর",
@@ -188,7 +213,7 @@ const translations = {
     gold_calc: "স্বর্ণের বাজার দর",
     sanchay_calc: "সঞ্চয়পত্র মুনাফা",
     invoice_maker: "প্রো ইনভয়েস মেকার",
-    footer_text: "কপিরাইট Onessor IT",
+    footer_text: "ওনেসর আইটি দ্বারা পরিচালিত",
     history: "ইতিহাস",
     no_history: "কোন ইতিহাস নেই",
     clear_all: "সব মুছুন",
@@ -204,7 +229,7 @@ const translations = {
     search_placeholder: "আজ আপনি কী খুঁজতেছেন?",
     hero_title: "আধুনিক জীবনের",
     hero_highlight: "স্মার্ট টুলস",
-    hero_desc: "হিসাব-নিকাশ, কনভার্সন এবং ইউটিলিটির জন্য আপনার ডিজিটাল সঙ্গী। দ্রুত, ফ্রি এবং সবার জন্য।",
+    hero_desc: "ক্যালকুলেটর প্রাইম হলো আপনার পরবর্তী প্রজন্মের ডিজিটাল সঙ্গী। হিসাব-নিকাশ এবং ইউটিলিটির জন্য দ্রুত, ফ্রি এবং সবার জন্য।",
 
     // General UI
     calculate: "হিসাব করুন",
@@ -266,7 +291,7 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
         <div className="flex items-center gap-6">
           <Link to="/" className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-violet-600 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-200">
-              CM
+              CP
             </div>
             <span className="text-2xl font-black bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent hidden sm:inline-block">
               {t('app_name')}
@@ -347,6 +372,8 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
                <div className="h-px w-4 bg-slate-200"></div> {t('math')}
             </div>
             <div className="space-y-1">
+              <NavItem to="/statistics-calculator" icon={BarChart3} label={t('stats_calc')} isNew />
+              <NavItem to="/pythagorean-calculator" icon={Triangle} label={t('pythagorean_calc')} />
               <NavItem to="/percentage-calculator" icon={Percent} label={t('percent_calc')} />
               <NavItem to="/general-calculator" icon={Grid3x3} label={t('gen_calc')} />
               <NavItem to="/unit-converter" icon={Ruler} label={t('unit_conv')} />
@@ -359,6 +386,12 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
                <div className="h-px w-4 bg-slate-200"></div> {t('health')}
             </div>
             <div className="space-y-1">
+              <NavItem to="/lean-body-mass-calculator" icon={Dumbbell} label={t('lbm_calc')} />
+              <NavItem to="/period-calculator" icon={Flower} label={t('period_calc')} />
+              <NavItem to="/ideal-weight-calculator" icon={Scale} label={t('ideal_weight_calc')} />
+              <NavItem to="/bmr-calculator" icon={HeartPulse} label={t('bmr_calc')} />
+              <NavItem to="/body-fat-calculator" icon={Gauge} label={t('body_fat_calc')} />
+              <NavItem to="/calorie-calculator" icon={Flame} label={t('calorie_calc')} />
               <NavItem to="/age-calculator" icon={Baby} label={t('age_calc')} />
               <NavItem to="/bmi-calculator" icon={Activity} label={t('bmi_calc')} />
               <NavItem to="/number-to-words" icon={Type} label={t('num_words')} />
@@ -394,7 +427,7 @@ const Layout = ({ children }: { children?: React.ReactNode }) => {
           <Link to="/terms" className="hover:text-indigo-600 transition-colors">{t('terms')}</Link>
           <Link to="/blog" className="hover:text-indigo-600 transition-colors">{t('blog')}</Link>
         </div>
-        <p className="text-sm text-slate-500 font-medium italic">© 2025 CalcMate. {t('footer_text')} 🌏</p>
+        <p className="text-sm text-slate-500 font-medium italic">© 2025 Calculator Prime. {t('footer_text')} 🌏</p>
       </footer>
     </div>
   );
@@ -439,6 +472,14 @@ const App = () => {
             <Route path="/sanchaypatra-calculator" element={<SanchaypatraCalculator />} />
             <Route path="/unit-converter" element={<UnitConverter />} />
             <Route path="/bmi-calculator" element={<BMICalculator />} />
+            <Route path="/calorie-calculator" element={<CalorieCalculator />} />
+            <Route path="/body-fat-calculator" element={<BodyFatCalculator />} />
+            <Route path="/bmr-calculator" element={<BMRCalculator />} />
+            <Route path="/ideal-weight-calculator" element={<IdealWeightCalculator />} />
+            <Route path="/period-calculator" element={<PeriodCalculator />} />
+            <Route path="/lean-body-mass-calculator" element={<LeanBodyMassCalculator />} />
+            <Route path="/pythagorean-calculator" element={<PythagoreanCalculator />} />
+            <Route path="/statistics-calculator" element={<StatisticsCalculator />} />
             <Route path="/qr-generator" element={<QRCodeGenerator />} />
             <Route path="/number-to-words" element={<NumberToWords />} />
             <Route path="/tax-calculator" element={<TaxCalculator />} />

@@ -1,5 +1,6 @@
-import React from 'react';
-import { Info, Heart, Globe, Zap } from 'lucide-react';
+
+import React, { useState } from 'react';
+import { BookOpen, Calendar, Clock, ArrowLeft, Share2, Info, Heart, Globe, Zap } from 'lucide-react';
 import { useLanguage } from '../App';
 
 const AboutUs = () => {
@@ -24,8 +25,8 @@ const AboutUs = () => {
           </h2>
           <p className="text-slate-600 leading-relaxed text-lg">
             {lang === 'en' 
-              ? "CalcMate is a product of Onessor IT. We are a dedicated team of developers and designers passionate about building simple, fast, and accessible digital tools for everyone. Our goal is to simplify complex daily calculations through technology."
-              : "ক্যালকমেট ওনেসর আইটি (Onessor IT)-এর একটি পণ্য। আমরা ডেভেলপার এবং ডিজাইনারদের একটি নিবেদিত দল যারা সবার জন্য সহজ, দ্রুত এবং অ্যাক্সেসযোগ্য ডিজিটাল টুল তৈরির বিষয়ে আগ্রহী। আমাদের লক্ষ্য প্রযুক্তির মাধ্যমে প্রতিদিনের জটিল হিসাবগুলোকে সহজ করা।"}
+              ? "Calculator Prime is a product of Onessor IT. We are a dedicated team of developers and designers passionate about building simple, fast, and accessible digital tools for everyone. Our goal is to simplify complex daily calculations through technology."
+              : "ক্যালকুলেটর প্রাইম ওনেসর আইটি (Onessor IT)-এর একটি পণ্য। আমরা ডেভেলপার এবং ডিজাইনারদের একটি নিবেদিত দল যারা সবার জন্য সহজ, দ্রুত এবং অ্যাক্সেসযোগ্য ডিজিটাল টুল তৈরির বিষয়ে আগ্রহী। আমাদের লক্ষ্য প্রযুক্তির মাধ্যমে প্রতিদিনের জটিল হিসাবগুলোকে সহজ করা।"}
           </p>
         </div>
 

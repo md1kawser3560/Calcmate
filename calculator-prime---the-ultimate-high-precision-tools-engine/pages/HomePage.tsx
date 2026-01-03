@@ -6,7 +6,8 @@ import {
   Coins, PiggyBank, ArrowRight, Search, Zap, Sparkles, LayoutGrid, Globe, 
   ShieldCheck, Heart, Share2, Percent, Binary, ReceiptText, DollarSign, 
   Landmark, Baby, QrCode, Clock, Calendar, MapPin, ShieldCheck as ShieldIcon, 
-  AlignLeft, Type, Hash, Tag, FileText
+  AlignLeft, Type, Hash, Tag, FileText, Flame, Gauge, HeartPulse, Scale, Flower,
+  Dumbbell, Triangle, BarChart3
 } from 'lucide-react';
 import { useLanguage } from '../App';
 
@@ -62,6 +63,8 @@ const HomePage = () => {
   const toolsSectionRef = useRef<HTMLDivElement>(null);
 
   const allTools = [
+    { id: 'stats', name: t('stats_calc'), icon: BarChart3, path: '/statistics-calculator', cat: 'math' },
+    { id: 'pyth', name: t('pythagorean_calc'), icon: Triangle, path: '/pythagorean-calculator', cat: 'math' },
     { id: 'perc', name: t('percent_calc'), icon: Percent, path: '/percentage-calculator', cat: 'math' },
     { id: 'gen', name: t('gen_calc'), icon: Grid3x3, path: '/general-calculator', cat: 'math' },
     { id: 'unit', name: t('unit_conv'), icon: Ruler, path: '/unit-converter', cat: 'math' },
@@ -75,6 +78,12 @@ const HomePage = () => {
     { id: 'tax', name: t('tax_calc'), icon: Percent, path: '/tax-calculator', cat: 'finance' },
     { id: 'curr', name: t('currency_calc'), icon: DollarSign, path: '/currency-converter', cat: 'finance' },
     
+    { id: 'lbm', name: t('lbm_calc'), icon: Dumbbell, path: '/lean-body-mass-calculator', cat: 'health' },
+    { id: 'period', name: t('period_calc'), icon: Flower, path: '/period-calculator', cat: 'health' },
+    { id: 'ideal', name: t('ideal_weight_calc'), icon: Scale, path: '/ideal-weight-calculator', cat: 'health' },
+    { id: 'bmr', name: t('bmr_calc'), icon: HeartPulse, path: '/bmr-calculator', cat: 'health' },
+    { id: 'bodyfat', name: t('body_fat_calc'), icon: Gauge, path: '/body-fat-calculator', cat: 'health' },
+    { id: 'calorie', name: t('calorie_calc'), icon: Flame, path: '/calorie-calculator', cat: 'health' },
     { id: 'age', name: t('age_calc'), icon: Baby, path: '/age-calculator', cat: 'health' },
     { id: 'bmi', name: t('bmi_calc'), icon: Activity, path: '/bmi-calculator', cat: 'health' },
     
@@ -103,8 +112,8 @@ const HomePage = () => {
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
-        title: 'CalcMate - Smart Online Tools',
-        text: 'Check out these amazing free online tools and calculators!',
+        title: 'Calculator Prime - Unique Logic Hub',
+        text: 'Access professional grade calculators and unique utilities for free at Calculator Prime!',
         url: window.location.origin,
       });
     }
@@ -113,10 +122,10 @@ const HomePage = () => {
   const getCategoryTitle = () => {
     if (!activeFilter) return '';
     const titles: Record<string, string> = {
-        math: lang === 'en' ? 'MATHEMATICAL TOOLS' : 'গণিত বিষয়ক টুলস',
-        finance: lang === 'en' ? 'FINANCIAL CALCULATORS' : 'আর্থিক হিসাবের টুলস',
-        health: lang === 'en' ? 'HEALTH & LIFE TOOLS' : 'স্বাস্থ্য ও জীবন বিষয়ক টুলস',
-        digital: lang === 'en' ? 'DIGITAL UTILITIES' : 'ডিজিটাল ইউটিলিটি টুলস'
+        math: lang === 'en' ? 'CP MATH LOGIC' : 'গাণিতিক টুলস',
+        finance: lang === 'en' ? 'CP FINANCE HUB' : 'আর্থিক হিসাবের টুলস',
+        health: lang === 'en' ? 'BODY METRICS' : 'স্বাস্থ্য বিষয়ক টুলস',
+        digital: lang === 'en' ? 'SMART UTILITIES' : 'ডিজিটাল ইউটিলিটি'
     };
     return titles[activeFilter];
   };
@@ -127,7 +136,7 @@ const HomePage = () => {
       <section className="relative py-24 text-center px-4 overflow-hidden">
         <div className="relative z-10 max-w-4xl mx-auto space-y-12 animate-in fade-in slide-in-from-bottom-8 duration-1000">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-slate-100 text-slate-500 text-[11px] font-black shadow-sm uppercase tracking-[0.2em]">
-            <Star size={14} className="text-amber-500" fill="currentColor" /> Premium Digital Toolkit
+            <Star size={14} className="text-amber-500" fill="currentColor" /> Welcome to the Calculator Prime Experience
           </div>
           <h1 className="text-5xl md:text-8xl font-black text-slate-900 leading-[1.05] tracking-tighter">
             {t('hero_title')} <br/>
@@ -187,7 +196,7 @@ const HomePage = () => {
                icon={Grid3x3} 
                title={lang === 'en' ? 'MATH' : 'গণিত'} 
                color="bg-sky-500" 
-               count="4+ TOOLS" 
+               count="6+ TOOLS" 
                active={activeFilter === 'math'}
              />
              <CategoryIconBox 
@@ -203,7 +212,7 @@ const HomePage = () => {
                icon={Activity} 
                title={lang === 'en' ? 'HEALTH' : 'স্বাস্থ্য'} 
                color="bg-rose-500" 
-               count="2+ TOOLS" 
+               count="8+ TOOLS" 
                active={activeFilter === 'health'}
              />
              <CategoryIconBox 
@@ -218,7 +227,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Tools Library Section - Conditional Rendering */}
+      {/* Tools Library Section */}
       {activeFilter && (
         <section ref={toolsSectionRef} className="max-w-6xl mx-auto px-4 scroll-mt-32 animate-in fade-in slide-in-from-bottom-12 duration-700">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 border-b border-slate-100 pb-10">
@@ -230,7 +239,7 @@ const HomePage = () => {
                 {getCategoryTitle()}
               </h2>
               <p className="text-slate-500 font-medium text-lg max-w-xl">
-                Explore our selection of professional {activeFilter} tools designed for precision and speed.
+                Explore our selection of professional {activeFilter} tools designed for high precision by Calculator Prime.
               </p>
             </div>
             <button 
@@ -259,51 +268,36 @@ const HomePage = () => {
                </Link>
              ))}
           </div>
-          
-          <div className="mt-20 p-10 bg-indigo-50/50 rounded-[3rem] border border-indigo-100/50 flex flex-col md:flex-row items-center justify-between gap-8">
-             <div>
-                <h4 className="text-xl font-black text-indigo-900 mb-2">Can't find what you're looking for?</h4>
-                <p className="text-indigo-700/70 font-medium">Try another category or use our global search in the header.</p>
-             </div>
-             <div className="flex gap-4">
-                <button 
-                  onClick={() => setActiveFilter(null)}
-                  className="px-6 py-3 bg-white text-indigo-600 border border-indigo-200 rounded-xl font-bold text-sm hover:bg-indigo-600 hover:text-white transition-all shadow-sm"
-                >
-                   All Categories
-                </button>
-             </div>
-          </div>
         </section>
       )}
 
-      {/* SEO Content Section (For Crawlers) */}
+      {/* SEO Content Section */}
       <section className="max-w-4xl mx-auto px-6 text-center space-y-10">
-        <h2 className="text-3xl font-black text-slate-800">Why Use CalcMate Tools?</h2>
+        <h2 className="text-3xl font-black text-slate-800">Why Calculator Prime?</h2>
         <div className="grid md:grid-cols-2 gap-8 text-left">
            <div className="space-y-4">
              <h4 className="font-bold text-slate-800 flex items-center gap-2">
-               <ShieldCheck className="text-emerald-500" size={20} /> 100% Accurate & Reliable
+               <ShieldCheck className="text-emerald-500" size={20} /> Zero Tracking & Privacy
              </h4>
-             <p className="text-slate-500 text-sm leading-relaxed">Our algorithms are cross-verified with global financial standards and local regulations in Bangladesh, ensuring you get the most precise results every time.</p>
+             <p className="text-slate-500 text-sm leading-relaxed">Calculator Prime doesn't store your calculations. Your data never leaves your device, ensuring total privacy.</p>
            </div>
            <div className="space-y-4">
              <h4 className="font-bold text-slate-800 flex items-center gap-2">
-               <Zap className="text-amber-500" size={20} /> Fast & Mobile Friendly
+               <Zap className="text-amber-500" size={20} /> Optimized for Speed
              </h4>
-             <p className="text-slate-500 text-sm leading-relaxed">CalcMate is built for speed. Whether you are on a smartphone or a desktop, our tools load instantly and work seamlessly even on slow connections.</p>
+             <p className="text-slate-500 text-sm leading-relaxed">Built with next-gen logic engines, our tools are 10x faster and mobile-first.</p>
            </div>
            <div className="space-y-4">
              <h4 className="font-bold text-slate-800 flex items-center gap-2">
-               <Globe className="text-blue-500" size={20} /> Localized for Bangladesh
+               <Globe className="text-blue-500" size={20} /> Global Data, Local Logic
              </h4>
-             <p className="text-slate-500 text-sm leading-relaxed">From Sanchaypatra profit calculations to NBR Tax rules, we provide tools specifically tailored for the Bangladeshi audience while maintaining global standards.</p>
+             <p className="text-slate-500 text-sm leading-relaxed">Specialized calculators for Bangladesh (NBR Tax, Sanchaypatra) with real-time global gold and currency rates.</p>
            </div>
            <div className="space-y-4">
              <h4 className="font-bold text-slate-800 flex items-center gap-2">
-               <Heart className="text-rose-500" size={20} /> Always Free to Use
+               <Heart className="text-rose-500" size={20} /> Community Driven
              </h4>
-             <p className="text-slate-500 text-sm leading-relaxed">No subscriptions, no hidden fees. CalcMate is a community-driven initiative to provide high-quality digital utilities to everyone without any cost.</p>
+             <p className="text-slate-500 text-sm leading-relaxed">Calculator Prime is a free-to-use platform dedicated to simplifying professional tasks for everyone.</p>
            </div>
         </div>
       </section>

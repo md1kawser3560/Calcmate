@@ -1,4 +1,0 @@
-User-agent: *User-agent: *
-Allow: /
-
-Sitemap: https://calcmate.app/sitemap.xml
